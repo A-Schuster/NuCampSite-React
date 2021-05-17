@@ -16,14 +16,6 @@ class CampsiteInfo extends Component{
       </div>
     )
   }
-  // comments: [
-  //   {
-  //       id: 0,
-  //       rating: 5, 
-  //       text: "What a magnificent view!",
-  //       author: "Tinus Lorvaldes",
-  //       date: "2018-10-25T16:30Z"
-  //   },
 
   renderComments(comments){
     if(comments){
@@ -52,9 +44,11 @@ class CampsiteInfo extends Component{
     const {campsite} = this.props
       if(campsite){
         return(
-          <div className={'row'}>
-            {this.renderCampsite(campsite)}
-            {this.renderComments(campsite.comments)}
+          <div className={'container'}>
+            <div className={'row'}>
+              {this.renderCampsite(campsite)}
+              {this.renderComments(campsite.comments)}
+            </div>
           </div>
         )
       }
