@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Card, CardImg, CardText, CardBody, 
-  Modal, ModalHeader, ModalBody,
-  Form, FormGroup, Input, Label,
-  Breadcrumb, BreadcrumbItem, Button,Row } from 'reactstrap';
+  Modal, ModalHeader, ModalBody, Label,
+  Breadcrumb, BreadcrumbItem, Button, } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form'
 
@@ -20,16 +19,12 @@ function RenderCampsite({campsite}){
   )
 }
 
-// firstName: '',
-// lastName: '',
-// phoneNum: '',
-
 const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 
 
-const CommentForm = () => {
+const CommentForm = (props) => {
   const [isModalOpen, toggleModal] = useState(false);
   
   
@@ -37,27 +32,10 @@ const CommentForm = () => {
     isModalOpen ? toggleModal(false) : toggleModal(false)
   }
 
-  const handleSubmit = (values) => {
-    alert(`Current State: ${JSON.stringify(values)}`)
+  const handleSubmit = ({ratings,author,text}) => {
+    props.addComment(props.campsiteId,ratings,author,text)
   }
 
-
-  // <Row className={'form-group'}>
-  //                               <Label htmlFor="firstName" md={2}>First Name</Label>
-  //                               <Col md={10}>
-  //                                   <Control.text model=".firstName" id="firstName" validators={{
-  //                                     required,
-  //                                     minLength: minLength(2),
-  //                                     maxLength: maxLength(15)
-  //                                   }} name="firstName"
-  //                                       placeholder="First Name" className="form-control"/>
-  //                                   <Errors className="text-danger" model=".firstName" show="touched" component='div' messages={{
-  //                                     required: 'Required',
-  //                                     minLength: "Must be at least 2 characters",
-  //                                     maxLength: 'Must be 15 characters or less'
-  //                                   }}/>
-  //                               </Col>
-  //                           </Row>
   return(
     <>
       <Modal isOpen={isModalOpen} toggle={handleModal}>
@@ -124,7 +102,7 @@ const CommentForm = () => {
   )
 }
 
-function RenderComments({comments}){
+function RenderComments({comments, addComment, campsiteId}){
   if(comments){
     return(
       <div className={"col-md-5 m-1"}>
@@ -137,7 +115,7 @@ function RenderComments({comments}){
             </div> 
           )
         })}
-      <CommentForm/>
+      <CommentForm campsiteId={campsiteId} addComment={addComment}/>
       </div>
     )
   }
@@ -164,7 +142,9 @@ function CampsiteInfo(props){
                 </div>
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments} 
+                    addComment={props.addComment} campsiteId={props.campsite.id}
+                    />
                 </div>
             </div>
         );
