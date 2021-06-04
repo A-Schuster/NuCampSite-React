@@ -8,7 +8,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Contact from './ContactComponent';
 import About from './AboutComponent';
-import { addComment, fetchCampsites,fetchComments,fetchPromotions } from '../redux/ActionCreators';
+import { postComment, fetchCampsites,fetchComments,fetchPromotions } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form'
 
 const mapStateToProps = state => {
@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 }
 
 const mapDipsatchToProps = {
-  addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
+  postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text)),
   fetchCampsites: () => (fetchCampsites()),
   resetFeedbackForm: () => (actions.reset('feedbackForm')),
   fetchComments: () => (fetchComments()),
@@ -40,7 +40,7 @@ class Main extends Component {
     const CampsiteWithId = ({match}) => {
       return (
           <CampsiteInfo 
-              addComment={this.props.addComment}
+              postComment={this.props.postComment}
               campsite={this.props.campsites.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
               isLoading={this.props.campsites.isLoading}
               errMess={this.props.campsites.errMess}

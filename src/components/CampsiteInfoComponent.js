@@ -35,7 +35,7 @@ const CommentForm = (props) => {
   }
 
   const handleSubmit = ({ratings,author,text}) => {
-    props.addComment(props.campsiteId,ratings,author,text)
+    props.postComment(props.campsiteId,ratings,author,text)
   }
 
   return(
@@ -104,7 +104,7 @@ const CommentForm = (props) => {
   )
 }
 
-function RenderComments({comments, addComment, campsiteId}){
+function RenderComments({comments, postComment, campsiteId}){
   if(comments){
     return(
       <div className={"col-md-5 m-1"}>
@@ -117,7 +117,7 @@ function RenderComments({comments, addComment, campsiteId}){
             </div> 
           )
         })}
-      <CommentForm campsiteId={campsiteId} addComment={addComment}/>
+      <CommentForm campsiteId={campsiteId} postComment={postComment}/>
       </div>
     )
   }
@@ -161,7 +161,7 @@ function CampsiteInfo(props){
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
                     <RenderComments comments={props.comments} 
-                    addComment={props.addComment} campsiteId={props.campsite.id}
+                    postComment={props.postComment} campsiteId={props.campsite.id}
                     />
                 </div>
             </div>
