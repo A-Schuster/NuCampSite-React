@@ -10,7 +10,6 @@ function RenderCard({item, isLoading, errMess}) {
   if(errMess){
     return <h4>{errMess}</h4>
   }
-  console.log(item.image)
     return (
         <Card>
             <CardImg src={baseUrl + item.image} alt={item.name} />
@@ -30,7 +29,7 @@ function Home(props) {
                   <RenderCard 
                   item={props.campsite} 
                   isLoading={props.campsitesLoading}
-                  errMes={props.campsitesErrMess}
+                  errMess={props.campsitesErrMess}
                   />
               </div>
               <div className="col-md m-1">

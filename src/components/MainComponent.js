@@ -43,7 +43,7 @@ class Main extends Component {
               addComment={this.props.addComment}
               campsite={this.props.campsites.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
               isLoading={this.props.campsites.isLoading}
-              errMes={this.props.campsites.errMes}
+              errMess={this.props.campsites.errMess}
               commentsErrMess={this.props.comments.errMess}
               comments={this.props.comments.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
           />
@@ -56,7 +56,7 @@ class Main extends Component {
           <Home
               campsite={this.props.campsites.campsites.filter(campsite => campsite.featured)[0]}
               campsitesLoading={this.props.campsites.isLoading}
-              campsitesErrMes={this.props.campsites.errMess}
+              campsitesErrMess={this.props.campsites.errMess}
               promotionLoading={this.props.promotions.isLoading}
               promotionErrMess={this.props.promotions.errMess}
               promotion={this.props.promotions.promotions.filter(promotion => promotion.featured)[0]}
